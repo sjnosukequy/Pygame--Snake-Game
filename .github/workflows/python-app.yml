@@ -28,6 +28,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install pygame mixer
+        sudo apt-get update
+        sudo apt-get install libsdl2-mixer-2.0-0
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
