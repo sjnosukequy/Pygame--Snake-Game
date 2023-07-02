@@ -20,6 +20,12 @@ class Game:
         self.font = pygame.font.Font("font/Pixeltype.ttf", 35)
         self.font2 = pygame.font.Font("font/Pixeltype.ttf", 50)
 
+        #music
+        self.blip_sound = pygame.mixer.Sound('sound/blip.mp3')
+        self.lose_sound_counter = 0
+        self.lose_sound = pygame.mixer.Sound('sound/lose.mp3')
+        self.lose_sound.set_volume(0.4)
+
     def run(self):
         self.Player.sprite.Heads.draw(screen)
         self.Player.update()
@@ -45,6 +51,7 @@ class Game:
             if pygame.sprite.spritecollide(self.Player.sprite, self.Apples, True):
                 self.Apple_Timer = 0
                 self.Player.sprite.EVO()
+                self.blip_sound.play()
 
         if self.Player.sprite.rect.top < 0:
             self.Lose = True
@@ -88,6 +95,7 @@ class Game:
         if self.Lose:
             if self.lose_sound_counter == 0:
                 self.lose_sound_counter += 1
+                self.lose_sound.play()
             return True
         return False
 
@@ -146,6 +154,10 @@ if __name__ == '__main__':
     screen_w = 960
     screen = pygame.display.set_mode((screen_w, screen_h))
     clock = pygame.time.Clock()
+
+    theme = pygame.mixer.Sound('sound/Theme.mp3')
+    theme.set_volume(0.5)
+    theme.play(-1)
 
     game = Game()
     crt = CRT()
