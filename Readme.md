@@ -2,4 +2,4 @@
 
     USE WASD TO MOVE AROUND
 
-    Run Game.py to play
+    Type py Game.py in CLI to play
